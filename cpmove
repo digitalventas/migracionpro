@@ -25,7 +25,7 @@ clear
 # Verifica si toilet y lolcat están instalados
 if ! command -v toilet &> /dev/null || ! command -v lolcat &> /dev/null; then
     echo "Instalando dependencias..."
-    sudo apt install toilet lolcat -y
+    apt install toilet lolcat -y
 fi
 
 # Definir funciones para mostrar los mensajes
