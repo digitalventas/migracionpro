@@ -8,7 +8,7 @@ if [ -e "BlackPro" ]; then
 fi
 
 
-# Descarga el script desde GitHub y lo guarda como "SetupOrion"
+# Descarga el script desde GitHub y lo guarda como "BlackPro"
 curl -sSL https://raw.githubusercontent.com/digitalventas/pro/refs/heads/master/cpmove -o BlackPro
 
     
@@ -31,7 +31,7 @@ fi
 # Definir funciones para mostrar los mensajes
 instalando_msg() {
     echo ""
-    toilet -f big -F border "BACKUPS CPANEL" | lolcat
+    toilet -f big -F border "BLACKPRO" | lolcat
     echo ""
 }
 
