@@ -1,22 +1,5 @@
 #!/bin/bash
 
-# Verifica si toilet y lolcat están instalados
-if ! command -v toilet &> /dev/null || ! command -v lolcat &> /dev/null; then
-    echo "Instalando dependencias..."
-    sudo apt install toilet lolcat -y
-fi
-
-# Definir funciones para mostrar los mensajes
-instalando_msg() {
-    echo ""
-    toilet -f big -F border "BACKUPS CPANEL" | lolcat
-    echo ""
-}
-
-
-# Llamar a las funciones en el script
-instalando_msg
-
 
 # Verifica si el archivo BlackPron existe
 if [ -e "BlackPro" ]; then
@@ -38,11 +21,23 @@ chmod +x BlackPro
 
 
 clear
-echo "=========================================="
-echo "******  ******"
-echo "***** Backups & Restauración de cPanel *****"
-echo "*******  ********"
-echo "=========================================="
+
+# Verifica si toilet y lolcat están instalados
+if ! command -v toilet &> /dev/null || ! command -v lolcat &> /dev/null; then
+    echo "Instalando dependencias..."
+    sudo apt install toilet lolcat -y
+fi
+
+# Definir funciones para mostrar los mensajes
+instalando_msg() {
+    echo ""
+    toilet -f big -F border "BACKUPS CPANEL" | lolcat
+    echo ""
+}
+
+
+# Llamar a las funciones en el script
+instalando_msg
 
 echo ""
 echo "1) Actualizar paquetes"
