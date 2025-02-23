@@ -43,7 +43,7 @@ case $opcion in
         echo "Actualizando paquetes..."
         sudo apt update && sudo apt upgrade -y
 
-        ./pro
+        ./BlackPro
         ;;
     2) 
         read -p "Ingresa el usuario de cPanel: " usuario
@@ -75,7 +75,7 @@ case $opcion in
         apt upgrade -y
 
         clear
-        rm pro
+        rm BlackPro
         ;;
        
     6)
