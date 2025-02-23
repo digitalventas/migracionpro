@@ -39,7 +39,8 @@ case $opcion in
     1) 
         echo "Actualizando paquetes..."
         sudo apt update && sudo apt upgrade -y
-
+        echo "Actualizacion de Sistema Completado."
+        sleep 5
         ./BlackPro
         ;;
     2) 
@@ -47,6 +48,8 @@ case $opcion in
         echo "Realizando backup de $usuario..."
         /scripts/pkgacct $usuario
         echo "Backup completado: /home/cpmove-$usuario.tar.gz"
+        sleep 5
+        ./BlackPro
         ;;
     3) 
         read -p "Ingresa el usuario de cPanel: " usuario
@@ -54,12 +57,16 @@ case $opcion in
         echo "Transfiriendo backup de $usuario a $ip_destino por el puerto 1020..."
         scp -P 1020 /home/cpmove-$usuario.tar.gz root@$ip_destino:/home
         echo "Transferencia completada."
+        sleep 5
+        ./BlackPro
         ;;
     4) 
         read -p "Ingresa el usuario de cPanel a restaurar: " usuario
         echo "Restaurando backup de $usuario..."
         /scripts/restorepkg $usuario
         echo "Restauración completada."
+        sleep 5
+        ./BlackPro
         ;;
      
     5) 
@@ -73,14 +80,16 @@ case $opcion in
 
         clear
         rm BlackPro
+        sleep 5
+        ./BlackPro
         ;;
        
     6)
         echo "Saliendo..."
+        rm BlackPro
         exit 0
         ;;
     *) 
         echo "Opción inválida. Inténtalo de nuevo."
         ;;
 esac
-
