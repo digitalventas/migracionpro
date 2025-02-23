@@ -88,7 +88,6 @@ case $opcion in
         echo "Saliendo..."
         rm BlackPro
         exit 0
-        sleep 5
         clear
         ;;
     *) 
