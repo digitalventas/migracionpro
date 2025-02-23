@@ -18,8 +18,6 @@ chmod +x BlackPro
 # Ejecuta el script descargado
 ./BlackPro
 
-
-
 echo "=========================================="
 echo "💾 Backups & Restauración de cPanel 💾"
 echo "=========================================="
