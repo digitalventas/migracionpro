@@ -1,0 +1,96 @@
+#!/bin/bash
+
+
+# Descarga el script desde GitHub y lo guarda como "SetupOrion"
+curl -sSL https://raw.githubusercontent.com/oriondesign2015/SetupOrion/main/SetupOrion -o pro
+
+# Verifica si la descarga fue exitosa
+if [ $? -eq 0 ]; then
+    echo "13/13 - [ OK ] - Descarga del script completada"
+    
+    # Asigna permisos de ejecución al script descargado
+    chmod +x pro
+    
+    # Ejecuta el script descargado
+    ./pro
+else
+    echo "13/13 - [ OFF ] - Error al descargar el script"
+    echo "Cerrando la instalación"
+    sleep 5
+fi
+
+
+clear
+echo "=========================================="
+echo "******  ******"
+echo "***** Backups & Restauración de cPanel *****"
+echo "*******  ********"
+echo "=========================================="
+
+echo ""
+echo "1) Actualizar paquetes"
+echo "2) Realizar backup de cPanel"
+echo "3) Transferir backup a otro servidor"
+echo "4) Restaurar backup de cPanel"
+echo "5) Eliminar backup de cPanel"
+echo "6) Salir"
+echo ""
+
+read -p "Ingresa una opción [1-6]: " opcion
+
+case $opcion in
+    1) 
+        echo "Actualizando paquetes..."
+        sudo apt update && sudo apt upgrade -y
+
+        ./pro
+        ;;
+    2) 
+        read -p "Ingresa el usuario de cPanel: " usuario
+        echo "Realizando backup de $usuario..."
+        /scripts/pkgacct $usuario
+        echo "Backup completado: /home/cpmove-$usuario.tar.gz"
+        ;;
+    3) 
+        read -p "Ingresa el usuario de cPanel: " usuario
+        read -p "Ingresa la IP del servidor destino: " ip_destino
+        echo "Transfiriendo backup de $usuario a $ip_destino por el puerto 1020..."
+        scp -P 1020 /home/cpmove-$usuario.tar.gz root@$ip_destino:/home
+        echo "Transferencia completada."
+        ;;
+    4) 
+        read -p "Ingresa el usuario de cPanel a restaurar: " usuario
+        echo "Restaurando backup de $usuario..."
+        /scripts/restorepkg $usuario
+        echo "Restauración completada."
+        ;;
+     
+    5) 
+      read -p "Ingrese usuario Cpanel a Borrar: " usuario
+      
+        echo "Eliminando backup de $usuario en proceso..."
+        rm /home/cpmove-$usuario.tar.gz 
+        echo "Backups cPanel cpmove-$usuario.tar.gz  Borrada por completada."
+        apt update
+        apt upgrade -y
+
+        clear
+        rm pro
+        ;;
+       
+    6)
+        echo "Saliendo..."
+        exit 0
+        ;;
+    *) 
+        echo "Opción inválida. Inténtalo de nuevo."
+        ;;
+esac
+
+
+
+
+
+
+ 
+
