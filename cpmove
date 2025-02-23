@@ -20,7 +20,7 @@ chmod +x BlackPro
 
 clear
 echo "=========================================="
-echo "💾 Backups & Restauración de cPanel 💾"
+echo  "💾 Backups & Restauración de cPanel 💾"
 echo "=========================================="
 echo ""
 
