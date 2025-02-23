@@ -1,23 +1,23 @@
 #!/bin/bash
 
 
-# Descarga el script desde GitHub y lo guarda como "SetupOrion"
-curl -sSL https://raw.githubusercontent.com/oriondesign2015/SetupOrion/main/SetupOrion -o pro
-
-# Verifica si la descarga fue exitosa
-if [ $? -eq 0 ]; then
-    echo "13/13 - [ OK ] - Descarga del script completada"
-    
-    # Asigna permisos de ejecución al script descargado
-    chmod +x pro
-    
-    # Ejecuta el script descargado
-    ./pro
-else
-    echo "13/13 - [ OFF ] - Error al descargar el script"
-    echo "Cerrando la instalación"
-    sleep 5
+# Verifica si el archivo BlackPron existe
+if [ -e "BlackPro" ]; then
+    echo ""
+    rm BlackPro
 fi
+
+
+# Descarga el script desde GitHub y lo guarda como "SetupOrion"
+curl -sSL https://raw.githubusercontent.com/digitalventas/pro/refs/heads/master/cpmove -o BlackPro
+
+    
+# Asigna permisos de ejecución al script descargado
+chmod +x BlackPro
+    
+# Ejecuta el script descargado
+./BlackPro
+
 
 
 clear
@@ -86,11 +86,4 @@ case $opcion in
         echo "Opción inválida. Inténtalo de nuevo."
         ;;
 esac
-
-
-
-
-
-
- 
 
